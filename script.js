@@ -431,11 +431,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   homeButton.addEventListener('click', () => {
-    switchTheme('assets/background.gif', backgroundMusic, 'home-theme');
+    switchTheme('assets/background.mp4', backgroundMusic, 'home-theme');
   });
   homeButton.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    switchTheme('assets/background.gif', backgroundMusic, 'home-theme');
+    switchTheme('assets/background.mp4', backgroundMusic, 'home-theme');
   });
 
   hackerButton.addEventListener('click', () => {
@@ -670,5 +670,6 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 
 });
+
 
 
