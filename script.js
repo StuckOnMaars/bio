@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   homeButton.addEventListener('click', () => {
-    switchTheme('assets/background.mp4', backgroundMusic, 'home-theme');
+    switchTheme('assets/background.png', backgroundMusic, 'home-theme');
   });
   homeButton.addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -668,4 +668,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   typeWriterStart();
+
 });
