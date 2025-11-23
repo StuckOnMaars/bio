@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #00CED1; 
-  --secondary-color: #FF6B9E;
-  --background-dark: #0A0A1A;
-  --text-color: #E0E0FF;
+  --primary-color: #8b5cf6;      /* neon-ish purple */
+  --secondary-color: #a855f7;    /* brighter purple accent */
+  --background-dark: #050507;    /* deep black w slight purple tint */
+  --text-color: #d6baff;         /* soft pale purple-white */
 }
 
 * {
@@ -26,12 +26,18 @@ body {
 
 
 body.home-theme {
-  --primary-gradient: from-purple-400;
-  --secondary-gradient: to-pink-600;
-  --primary-color: #00CED1; 
-  --secondary-color: #FF6B9E;
-  --cursor-hue: 180deg; 
+  /* dark purple gradient */
+  --primary-gradient: from-purple-700;
+  --secondary-gradient: to-purple-900;
+
+  /* accent colors */
+  --primary-color: #8b5cf6;   /* soft neon purple */
+  --secondary-color: #a855f7; /* brighter purple pop */
+
+  /* cursor glow hue */
+  --cursor-hue: 270deg; /* purple range */
 }
+
 
 body.hacker-theme {
   --primary-gradient: from-green-500;
@@ -763,3 +769,4 @@ body.car-theme {
   }
 
 }
+
