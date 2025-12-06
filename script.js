@@ -236,8 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const bioMessages = [
-    "Yo, I’m Maarz. I’m a geek for all that Roblox and Lua stuff, and I’m kinda learning Python rn too. If you ever need to talk or whatever, hmu. Socials below.",
-    "\"Hello, World!\""
+    "Hey, I’m Maarz. I know my shit with Lua and Python. I build Roblox games and make exploits and scripts. If you need me, hit me up, socials are below.",
+    "\"I love you mimi, always will\""
   ];
   let bioText = '';
   let bioIndex = 0;
@@ -670,6 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 
 });
+
 
 
 
