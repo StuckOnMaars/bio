@@ -236,8 +236,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const bioMessages = [
-    "Hey, I’m Maarz. I know my shit with Lua and Python. I build Roblox games and make exploits and scripts. If you need me, hit me up, socials are below.",
-    "\"I love you mimi, always will\""
+"Hey, I’m Maarz. I know my shit with Lua and Python. I build Roblox games and make exploits and scripts. If you need me, hit me up, socials are below.",
+"\"I love you mimi, always will\"",
+"I code. A lot. That’s basically it.",
+"I don’t chase hype. I just make things work.",
+"If I’m not answering, I’m probably knee-deep in some broken code.",
+"Roblox dev stuff, scripting, whatever. I get it done.",
+"I keep my stack simple. I keep my code cleaner than most people’s desktops.",
+"Ask me for help only if you actually need it. I’m not here to babysit bad code.",
+"I’m either fixing something or breaking something on purpose."
   ];
   let bioText = '';
   let bioIndex = 0;
@@ -670,6 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 
 });
+
 
 
 
