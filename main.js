@@ -88,6 +88,8 @@ function init() {
     renderProjects('all');
     setupEventListeners();
     fetchGameStats();
+    setupAvatarTilt();
+    setupClickEasterEgg();
 }
 
 function renderFilters() {
@@ -180,6 +182,7 @@ function createProjectCard(project) {
 function openModal(project) {
     modalTitle.textContent = project.title;
 
+    // Create or update role in modal
     let modalRole = document.getElementById('modalRole');
     if (!modalRole) {
         modalRole = document.createElement('span');
@@ -310,7 +313,9 @@ function animateStats() {
 }
 
 function fetchGameStats() {
+    // 9052829477 = KJ Stars, 6835164125 = Mischievous Battlegrounds
     const universeIds = '9052829477,6835164125';
+    // Using allorigins as a CORS proxy
     const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://games.roblox.com/v1/games?universeIds=${universeIds}`)}`;
 
     fetch(proxyUrl)
@@ -361,5 +366,91 @@ styleSheet.innerText = `
 }
 `;
 document.head.appendChild(styleSheet);
+
+// 3D Avatar Tilt Logic
+function setupAvatarTilt() {
+    const card = document.getElementById('avatarCard');
+    const container = document.getElementById('avatarContainer');
+
+    if (!card || !container) return;
+
+    container.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate rotation based on cursor position relative to center
+        const xPct = x / rect.width;
+        const yPct = y / rect.height;
+
+        const rotateY = (xPct - 0.5) * 40;
+        const rotateX = (0.5 - yPct) * 40;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+}
+
+// Click Easter Egg (Roblox Studio x5)
+function setupClickEasterEgg() {
+    const trigger = document.getElementById('robloxSkill');
+    if (!trigger) return;
+
+    let clickCount = 0;
+    let timeout;
+
+    trigger.addEventListener('click', () => {
+        clickCount++;
+
+        // Reset count if too much time passes
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            clickCount = 0;
+        }, 1000);
+
+        if (clickCount >= 5) {
+            startMcLovinRain();
+            clickCount = 0;
+            clearTimeout(timeout);
+        }
+    });
+}
+
+function startMcLovinRain() {
+    const container = document.getElementById('rainContainer');
+    container.style.display = 'block';
+
+    // Spawn 50 McLovins over 3 seconds
+    let count = 0;
+    const interval = setInterval(() => {
+        spawnMcLovin(container);
+        count++;
+        if (count > 50) {
+            clearInterval(interval);
+            setTimeout(() => {
+                container.style.display = 'none';
+                container.innerHTML = '';
+            }, 5000);
+        }
+    }, 100);
+}
+
+function spawnMcLovin(container) {
+    const img = document.createElement('img');
+    img.src = "https://i.redd.it/okarun-mclovin-v0-5ffo9ddswqsd1.png?width=612&format=png&auto=webp&s=c4e25858d73fc581ea5d85a00a03eb7c0067ccaf";
+    img.classList.add('mclovin');
+
+    img.style.left = Math.random() * 100 + 'vw';
+
+    const size = 50 + Math.random() * 100;
+    img.style.width = size + 'px';
+
+    img.style.animationDuration = (2 + Math.random() * 3) + 's';
+
+    container.appendChild(img);
+}
 
 init();

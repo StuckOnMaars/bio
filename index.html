@@ -78,7 +78,8 @@
         <section class="skills-section">
             <h2 class="section-title">Tech Stack</h2>
             <div class="skills-grid">
-                <div class="skill-card"><span class="skill-icon">⚡</span> Roblox Studio</div>
+                <div class="skill-card" id="robloxSkill" style="cursor: pointer;"><span class="skill-icon">⚡</span>
+                    Roblox Studio</div>
                 <div class="skill-card"><span class="skill-icon">📜</span> Luau</div>
                 <div class="skill-card"><span class="skill-icon">🌐</span> HTML5</div>
                 <div class="skill-card"><span class="skill-icon">🎨</span> CSS3</div>
@@ -98,10 +99,44 @@
                     Millions of people have played my games, which is honestly kind of crazy.
                     Just coding for the fun of it!
                 </p>
+                <!-- 3D Avatar Tilt Card -->
+                <div class="avatar-container" id="avatarContainer">
+                    <div class="avatar-card" id="avatarCard">
+                        <div class="avatar-bg"></div>
+                        <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-0335834930E59ABEAE534A04A9D6ABB1-Png/150/150/AvatarHeadshot/Png/isCircular"
+                            alt="Maarz Avatar" class="avatar-img" id="avatarImg">
+                        <div class="avatar-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wall of Fame -->
+        <section class="testimonials-section">
+            <h2 class="section-title">Wall of Fame</h2>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <div class="testimonial-card">"Best combat system on Roblox! 🔥" <br>- xX_Slayer_Xx</div>
+                    <div class="testimonial-card">"Updates are always insane 🚀" <br>- TypicalGamer</div>
+                    <div class="testimonial-card">"How did you make that cutscene??" <br>- DevForumUser</div>
+                    <div class="testimonial-card">"The movement is so smooth" <br>- CompPlayer1</div>
+                    <div class="testimonial-card">"Goated Dev 🐐" <br>- FanNo1</div>
+                    <div class="testimonial-card">"Waiting for next update..." <br>- EveryDiscordUser</div>
+                    <!-- Duplicate for infinite scroll smoothness -->
+                    <div class="testimonial-card">"Best combat system on Roblox! 🔥" <br>- xX_Slayer_Xx</div>
+                    <div class="testimonial-card">"Updates are always insane 🚀" <br>- TypicalGamer</div>
+                    <div class="testimonial-card">"How did you make that cutscene??" <br>- DevForumUser</div>
+                    <div class="testimonial-card">"The movement is so smooth" <br>- CompPlayer1</div>
+                    <div class="testimonial-card">"Goated Dev 🐐" <br>- FanNo1</div>
+                    <div class="testimonial-card">"Waiting for next update..." <br>- EveryDiscordUser</div>
+                </div>
             </div>
         </section>
 
     </main>
+
+    <!-- McLovin Rain Container -->
+    <div id="rainContainer" class="rain-container"></div>
 
     <footer class="site-footer">
         <p>&copy; 2026 Maarz. All rights reserved.</p>
