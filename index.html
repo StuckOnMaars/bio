@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maarz's Portfolio</title>
+    <link rel="icon"
+        href="https://i.redd.it/okarun-mclovin-v0-5ffo9ddswqsd1.png?width=612&format=png&auto=webp&s=c4e25858d73fc581ea5d85a00a03eb7c0067ccaf"
+        type="image/png">
+    <meta name="description" content="A small HTML Project showing the projects I've worked on.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="DEV // CODER">DEV // CODER</h1>
+            <p class="subtitle">Scripting for fun.</p>
+
+            <div class="theme-controls">
+                <span>Theme:</span>
+                <button class="theme-dot" data-theme="default" aria-label="Default Theme" title="Midnight"></button>
+                <button class="theme-dot" data-theme="light" aria-label="Light Theme" title="Light"></button>
+                <button class="theme-dot" data-theme="cyberpunk" aria-label="Cyberpunk Theme"
+                    title="Cyberpunk"></button>
+                <button class="theme-dot" data-theme="ocean" aria-label="Ocean Theme" title="Ocean"></button>
+                <button class="theme-dot" data-theme="blood" aria-label="Blood Theme" title="Blood Red"></button>
+                <button class="theme-dot" data-theme="edgerunners" aria-label="Edgerunners Theme"
+                    title="Edgerunners"></button>
+                <button class="theme-dot" data-theme="forest" aria-label="Forest Theme" title="Forest"></button>
+                <button class="theme-dot" data-theme="sunset" aria-label="Sunset Theme" title="Sunset"></button>
+                <button class="theme-dot" data-theme="dracula" aria-label="Dracula Theme" title="Dracula"></button>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/StuckOnMaars" target="_blank" aria-label="GitHub">GitHub</a>
+                <a href="#" target="_blank" aria-label="Itch.io">Itch.io</a>
+                <a href="#" target="_blank" aria-label="Twitter">Twitter</a>
+                <a href="https://www.roblox.com/users/10906754/profile" target="_blank" aria-label="Roblox">Roblox</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="stats-section" id="statsSection">
+            <div class="stat-item">
+                <span class="stat-number" data-target="4">0</span>
+                <span class="stat-suffix">M+</span>
+                <span class="stat-label">Total Visits</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="11">0</span>
+                <span class="stat-suffix">k+</span>
+                <span class="stat-label">Favorites</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-suffix">+</span>
+                <span class="stat-label">Years Exp</span>
+            </div>
+        </section>
+
+        <section class="controls">
+            <div class="filter-group" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">All</button>
+            </div>
+        </section>
+
+        <section class="projects-grid" id="projectsGrid">
+        </section>
+
+        <section class="skills-section">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card"><span class="skill-icon">⚡</span> Roblox Studio</div>
+                <div class="skill-card"><span class="skill-icon">📜</span> Luau</div>
+                <div class="skill-card"><span class="skill-icon">🌐</span> HTML5</div>
+                <div class="skill-card"><span class="skill-icon">🎨</span> CSS3</div>
+                <div class="skill-card"><span class="skill-icon">💻</span> JavaScript</div>
+                <div class="skill-card"><span class="skill-icon">🔧</span> Git</div>
+                <div class="skill-card"><span class="skill-icon">🎮</span> Game Design</div>
+                <div class="skill-card"><span class="skill-icon">📊</span> Analytics</div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I just love scripting and making cool stuff on Roblox. I've been doing this for over 3 years,
+                    mostly creating battlegrounds games with insane combat mechanics.
+                    Millions of people have played my games, which is honestly kind of crazy.
+                    Just coding for the fun of it!
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Maarz. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/StuckOnMaars" target="_blank">GitHub</a>
+            <a href="https://www.roblox.com/users/10906754/profile" target="_blank">Roblox</a>
+        </div>
+    </footer>
+    <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+
+            <div class="modal-header">
+                <div class="modal-media" id="modalMedia">
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <h2 id="modalTitle">Portfolio</h2>
+                <div class="modal-tags" id="modalTags"></div>
+                <p id="modalDescription" class="modal-desc">idfk man</p>
+
+                <div class="modal-tech">
+                    <h3>Tech Stack</h3>
+                    <ul id="modalTech"></ul>
+                </div>
+
+                <div class="modal-actions" id="modalLinks">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
