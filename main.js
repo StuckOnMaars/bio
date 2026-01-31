@@ -87,7 +87,7 @@ function init() {
     renderFilters();
     renderProjects('all');
     setupEventListeners();
-    fetchGameStats();
+    calculateStats();
     setupAvatarTilt();
     setupClickEasterEgg();
 }
@@ -293,10 +293,16 @@ function animateStats() {
                 const updateCount = () => {
                     current += increment;
                     if (current < target) {
-                        entry.target.innerText = Math.ceil(current);
+                        // Check if the target is a decimal to decide formatting
+                        if (target % 1 !== 0) {
+                            entry.target.innerText = current.toFixed(1);
+                        } else {
+                            entry.target.innerText = Math.floor(current);
+                        }
                         requestAnimationFrame(updateCount);
                     } else {
-                        entry.target.innerText = target;
+                        // Ensure it ends at the exact target value
+                        entry.target.innerText = target % 1 !== 0 ? target.toFixed(1) : target;
                     }
                 };
 
@@ -311,42 +317,25 @@ function animateStats() {
     });
 }
 
-function fetchGameStats() {
-    const universeIds = '9052829477,6835164125';
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://games.roblox.com/v1/games?universeIds=${universeIds}`)}`;
+function calculateStats() {
+    // ===== EDIT THESE VALUES =====
+    // Enter your total visits and favorites here
+    const totalVisits = 4100000;      // Total visits across all games
+    const totalFavorites = 11058;     // Total favorites across all games
+    // =============================
 
-    fetch(proxyUrl)
-        .then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-            const parsedData = JSON.parse(data.contents);
-            if (parsedData.data && parsedData.data.length > 0) {
-                let totalVisits = 0;
-                let totalFavorites = 0;
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length >= 2) {
+        // Convert to millions (M+) and thousands (k+)
+        const visitsInMillions = (totalVisits / 1000000).toFixed(1);
+        const favoritesInK = (totalFavorites / 1000).toFixed(1);
 
-                parsedData.data.forEach(game => {
-                    totalVisits += game.visits;
-                    totalFavorites += game.favoritedCount;
-                });
+        statNumbers[0].setAttribute('data-target', visitsInMillions);
+        statNumbers[1].setAttribute('data-target', favoritesInK);
+    }
 
-                const statNumbers = document.querySelectorAll('.stat-number');
-                if (statNumbers.length >= 2) {
-                    const visitsInMillions = (totalVisits / 1000000).toFixed(1);
-                    const favoritesInK = (totalFavorites / 1000).toFixed(1);
-
-                    statNumbers[0].setAttribute('data-target', visitsInMillions);
-                    statNumbers[1].setAttribute('data-target', favoritesInK);
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching stats:', error);
-        })
-        .finally(() => {
-            animateStats();
-        });
+    // Start the animation
+    animateStats();
 }
 
 const styleSheet = document.createElement("style");

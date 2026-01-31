@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Maarz's Portfolio</title>
+    <link rel="icon"
+        href="https://i.redd.it/okarun-mclovin-v0-5ffo9ddswqsd1.png?width=612&format=png&auto=webp&s=c4e25858d73fc581ea5d85a00a03eb7c0067ccaf"
+        type="image/png">
+    <meta name="description" content="Gallery of footage and screenshots from my projects.">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="GALLERY">GALLERY</h1>
+            <p class="subtitle">Footage & Screenshots from my projects</p>
+
+            <div class="theme-controls">
+                <span>Theme:</span>
+                <button class="theme-dot" data-theme="default" aria-label="Default Theme" title="Midnight"></button>
+                <button class="theme-dot" data-theme="light" aria-label="Light Theme" title="Light"></button>
+                <button class="theme-dot" data-theme="cyberpunk" aria-label="Cyberpunk Theme"
+                    title="Cyberpunk"></button>
+                <button class="theme-dot" data-theme="ocean" aria-label="Ocean Theme" title="Ocean"></button>
+                <button class="theme-dot" data-theme="blood" aria-label="Blood Theme" title="Blood Red"></button>
+                <button class="theme-dot" data-theme="edgerunners" aria-label="Edgerunners Theme"
+                    title="Edgerunners"></button>
+                <button class="theme-dot" data-theme="forest" aria-label="Forest Theme" title="Forest"></button>
+                <button class="theme-dot" data-theme="sunset" aria-label="Sunset Theme" title="Sunset"></button>
+                <button class="theme-dot" data-theme="dracula" aria-label="Dracula Theme" title="Dracula"></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Portfolio</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="controls">
+            <div class="filter-group" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">All</button>
+            </div>
+        </section>
+
+        <section class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be dynamically inserted here -->
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Maarz. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Portfolio</a>
+            <a href="https://github.com/StuckOnMaars" target="_blank">GitHub</a>
+            <a href="https://www.roblox.com/users/10906754/profile" target="_blank">Roblox</a>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous" id="prevBtn">‹</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Next" id="nextBtn">›</button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-media" id="lightboxMedia"></div>
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Title</h3>
+                <p id="lightboxDesc">Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="gallery.js"></script>
+</body>
+
+</html>
