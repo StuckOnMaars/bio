@@ -1,4 +1,3 @@
-// Gallery media data
 const galleryItems = [
     {
         id: 1,
@@ -29,21 +28,21 @@ const galleryItems = [
     },
     {
         id: 4,
-        title: "Mischievous - Character Selection",
-        description: "Diverse character roster with unique movesets",
+        title: "Mischievous - Omni-Man Ultimate",
+        description: "The ultimate for the Omni-Man Character",
         project: "Mischievous Battlegrounds",
         category: "mischievous",
-        type: "image",
-        src: "https://tr.rbxcdn.com/180DAY-32e4ef4c65a6c4a9c41ab3bd9cca360c/768/432/Image/Webp/noFilter"
+        type: "embed",
+        src: "https://streamable.com/e/o9dgbt"
     },
     {
         id: 5,
-        title: "KJ Stars - Movement System",
-        description: "Advanced movement mechanics and dash system",
+        title: "KJ Stars - Okarun's Ultimate Moves",
+        description: "3 Moves for Okaruns Ultimate Moveset",
         project: "KJ Stars Battlegrounds",
         category: "kj-stars",
-        type: "image",
-        src: "https://tr.rbxcdn.com/180DAY-65ff1619ac33bee6709d2cf556562227/768/432/Image/Webp/noFilter"
+        type: "embed",
+        src: "https://streamable.com/e/e0vxzh"
     },
     {
         id: 6,
@@ -56,7 +55,6 @@ const galleryItems = [
     }
 ];
 
-// DOM Elements
 const galleryGrid = document.getElementById('galleryGrid');
 const filterContainer = document.getElementById('filterContainer');
 const lightbox = document.getElementById('lightbox');
@@ -71,7 +69,6 @@ let currentIndex = 0;
 let currentFilter = 'all';
 let filteredItems = [...galleryItems];
 
-// Initialize
 function init() {
     renderFilters();
     renderGallery('all');
@@ -79,7 +76,6 @@ function init() {
     loadTheme();
 }
 
-// Render filter buttons
 function renderFilters() {
     const categories = new Set();
     galleryItems.forEach(item => categories.add(item.category));
@@ -89,7 +85,6 @@ function renderFilters() {
         btn.classList.add('filter-btn');
         btn.dataset.filter = category;
 
-        // Create readable labels
         const label = category === 'kj-stars' ? 'KJ Stars' : 'Mischievous BG';
         btn.textContent = label;
 
@@ -97,7 +92,6 @@ function renderFilters() {
     });
 }
 
-// Render gallery items
 function renderGallery(filter) {
     galleryGrid.innerHTML = '';
     currentFilter = filter;
@@ -112,7 +106,6 @@ function renderGallery(filter) {
     });
 }
 
-// Create individual gallery item
 function createGalleryItem(item, index) {
     const div = document.createElement('div');
     div.classList.add('gallery-item');
@@ -127,13 +120,69 @@ function createGalleryItem(item, index) {
         video.src = item.src;
         video.muted = true;
         video.loop = true;
+        video.playsInline = true;
+        video.autoplay = false;
+        video.preload = "metadata";
+        video.setAttribute('webkit-playsinline', 'true');
         mediaDiv.appendChild(video);
 
-        // Add video indicator
         const indicator = document.createElement('div');
         indicator.classList.add('video-indicator');
         indicator.innerHTML = '▶ Video';
         mediaDiv.appendChild(indicator);
+
+        div.addEventListener('mouseenter', () => {
+            document.querySelectorAll('video').forEach(v => {
+                if (v !== video && !v.closest('.lightbox-media')) v.pause();
+            });
+            document.querySelectorAll('.gallery-item iframe').forEach(ifrm => {
+                ifrm.src = ifrm.src.replace('&autoplay=1', '&autoplay=0');
+            });
+            video.play().catch(() => { });
+        });
+
+        div.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+    } else if (item.type === 'embed') {
+        const iframePlaceholder = document.createElement('div');
+        iframePlaceholder.style.width = '100%';
+        iframePlaceholder.style.height = '100%';
+        iframePlaceholder.style.background = '#2a2a2e';
+        iframePlaceholder.style.display = 'flex';
+        iframePlaceholder.style.alignItems = 'center';
+        iframePlaceholder.style.justifyContent = 'center';
+        iframePlaceholder.innerHTML = '<span style="color: var(--text-muted); font-size: 0.8rem;">Hover to Preview</span>';
+        mediaDiv.appendChild(iframePlaceholder);
+
+        const indicator = document.createElement('div');
+        indicator.classList.add('video-indicator');
+        indicator.innerHTML = '▶ Embed';
+        mediaDiv.appendChild(indicator);
+
+        div.addEventListener('mouseenter', () => {
+            document.querySelectorAll('video').forEach(v => {
+                if (!v.closest('.lightbox-media')) v.pause();
+            });
+            document.querySelectorAll('.gallery-item-media iframe').forEach(ifrm => ifrm.remove());
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `${item.src}?autoplay=1&muted=1&controls=0`;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            iframe.style.pointerEvents = 'none';
+            mediaDiv.appendChild(iframe);
+            iframePlaceholder.style.display = 'none';
+        });
+
+        div.addEventListener('mouseleave', () => {
+            const iframe = mediaDiv.querySelector('iframe');
+            if (iframe) iframe.remove();
+            iframePlaceholder.style.display = 'flex';
+        });
     } else {
         const img = document.createElement('img');
         img.src = item.src;
@@ -159,13 +208,11 @@ function createGalleryItem(item, index) {
     div.appendChild(mediaDiv);
     div.appendChild(infoDiv);
 
-    // Click to open lightbox
     div.addEventListener('click', () => openLightbox(filteredItems.indexOf(item)));
 
     return div;
 }
 
-// Open lightbox
 function openLightbox(index) {
     currentIndex = index;
     updateLightboxContent();
@@ -174,18 +221,16 @@ function openLightbox(index) {
     document.body.style.overflow = 'hidden';
 }
 
-// Close lightbox
+
 function closeLightbox() {
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 
-    // Pause video if playing
     const video = lightboxMedia.querySelector('video');
     if (video) video.pause();
 }
 
-// Update lightbox content
 function updateLightboxContent() {
     const item = filteredItems[currentIndex];
 
@@ -199,7 +244,30 @@ function updateLightboxContent() {
         video.src = item.src;
         video.controls = true;
         video.autoplay = true;
+        video.playsInline = true;
+        video.muted = false;
+
+        video.onerror = () => {
+            lightboxMedia.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <p style="color: #ff4444; margin-bottom: 1rem;">Unable to load video.</p>
+                    <p style="font-size: 0.8rem; color: #888;">Note: Direct links are required for video tags.</p>
+                </div>
+            `;
+        };
+
         lightboxMedia.appendChild(video);
+    } else if (item.type === 'embed') {
+        const iframe = document.createElement('iframe');
+        iframe.src = item.src;
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.frameBorder = "0";
+        iframe.allow = "autoplay; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.style.aspectRatio = "16 / 9";
+        iframe.style.borderRadius = "var(--border-radius)";
+        lightboxMedia.appendChild(iframe);
     } else {
         const img = document.createElement('img');
         img.src = item.src;
@@ -208,21 +276,16 @@ function updateLightboxContent() {
     }
 }
 
-// Navigate to previous item
 function showPrevious() {
     currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
     updateLightboxContent();
 }
-
-// Navigate to next item
 function showNext() {
     currentIndex = (currentIndex + 1) % filteredItems.length;
     updateLightboxContent();
 }
 
-// Setup event listeners
 function setupEventListeners() {
-    // Filter buttons
     filterContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('filter-btn')) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -233,17 +296,13 @@ function setupEventListeners() {
         }
     });
 
-    // Lightbox controls
     closeBtn.addEventListener('click', closeLightbox);
     prevBtn.addEventListener('click', showPrevious);
     nextBtn.addEventListener('click', showNext);
-
-    // Click backdrop to close
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('open')) return;
 
@@ -260,7 +319,6 @@ function setupEventListeners() {
         }
     });
 
-    // Theme switching
     const themeDots = document.querySelectorAll('.theme-dot');
     themeDots.forEach(dot => {
         dot.addEventListener('click', () => {
@@ -271,11 +329,9 @@ function setupEventListeners() {
     });
 }
 
-// Load saved theme
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme') || 'default';
     document.body.setAttribute('data-theme', savedTheme);
 }
 
-// Initialize on page load
 init();

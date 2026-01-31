@@ -293,7 +293,6 @@ function animateStats() {
                 const updateCount = () => {
                     current += increment;
                     if (current < target) {
-                        // Check if the target is a decimal to decide formatting
                         if (target % 1 !== 0) {
                             entry.target.innerText = current.toFixed(1);
                         } else {
@@ -301,7 +300,6 @@ function animateStats() {
                         }
                         requestAnimationFrame(updateCount);
                     } else {
-                        // Ensure it ends at the exact target value
                         entry.target.innerText = target % 1 !== 0 ? target.toFixed(1) : target;
                     }
                 };
@@ -318,15 +316,11 @@ function animateStats() {
 }
 
 function calculateStats() {
-    // ===== EDIT THESE VALUES =====
-    // Enter your total visits and favorites here
-    const totalVisits = 4100000;      // Total visits across all games
-    const totalFavorites = 11058;     // Total favorites across all games
-    // =============================
+    const totalVisits = 4100000;
+    const totalFavorites = 11058;
 
     const statNumbers = document.querySelectorAll('.stat-number');
     if (statNumbers.length >= 2) {
-        // Convert to millions (M+) and thousands (k+)
         const visitsInMillions = (totalVisits / 1000000).toFixed(1);
         const favoritesInK = (totalFavorites / 1000).toFixed(1);
 
@@ -334,7 +328,6 @@ function calculateStats() {
         statNumbers[1].setAttribute('data-target', favoritesInK);
     }
 
-    // Start the animation
     animateStats();
 }
 
