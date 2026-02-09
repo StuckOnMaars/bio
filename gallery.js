@@ -1,15 +1,6 @@
 const galleryItems = [
     {
         id: 1,
-        title: "KJ Stars - Combat Showcase",
-        description: "Fast-paced combo-based melee combat",
-        project: "KJ Stars Battlegrounds",
-        category: "kj-stars",
-        type: "image",
-        src: "https://tr.rbxcdn.com/180DAY-65ff1619ac33bee6709d2cf556562227/768/432/Image/Webp/noFilter"
-    },
-    {
-        id: 2,
         title: "Mischievous Battlegrounds - Arena",
         description: "Main battlegrounds arena environment",
         project: "Mischievous Battlegrounds",
@@ -18,16 +9,7 @@ const galleryItems = [
         src: "https://tr.rbxcdn.com/180DAY-32e4ef4c65a6c4a9c41ab3bd9cca360c/768/432/Image/Webp/noFilter"
     },
     {
-        id: 3,
-        title: "KJ Stars - Ultimate Mode",
-        description: "Ultimate mode transformation sequence",
-        project: "KJ Stars Battlegrounds",
-        category: "kj-stars",
-        type: "image",
-        src: "https://tr.rbxcdn.com/180DAY-65ff1619ac33bee6709d2cf556562227/768/432/Image/Webp/noFilter"
-    },
-    {
-        id: 4,
+        id: 2,
         title: "Mischievous - Omni-Man Ultimate",
         description: "The ultimate for the Omni-Man Character",
         project: "Mischievous Battlegrounds",
@@ -36,16 +18,16 @@ const galleryItems = [
         src: "https://streamable.com/e/o9dgbt"
     },
     {
-        id: 5,
+        id: 3,
         title: "KJ Stars - Okarun's Ultimate Moves",
         description: "3 Moves for Okaruns Ultimate Moveset",
         project: "KJ Stars Battlegrounds",
         category: "kj-stars",
         type: "embed",
-        src: "https://streamable.com/e/e0vxzh"
+        src: "https://streamable.com/e/bf1ano"
     },
     {
-        id: 6,
+        id: 4,
         title: "Mischievous - Special Moves",
         description: "Unique character abilities and special attacks",
         project: "Mischievous Battlegrounds",
@@ -54,7 +36,7 @@ const galleryItems = [
         src: "https://tr.rbxcdn.com/180DAY-32e4ef4c65a6c4a9c41ab3bd9cca360c/768/432/Image/Webp/noFilter"
     },
     {
-        id: 7,
+        id: 5,
         title: "Commission - Sukuna Moveset",
         description: "Sukuna's moveset for a private commission",
         project: "Commission",
@@ -66,7 +48,7 @@ const galleryItems = [
         currency: "robux"
     },
     {
-        id: 8,
+        id: 6,
         title: "Commission - Gojo Moveset",
         description: "Gojo's moveset for a private commission",
         project: "Commission",
@@ -78,7 +60,7 @@ const galleryItems = [
         currency: "robux"
     },
     {
-        id: 9,
+        id: 7,
         title: "Personal Project - Vergil's Judgment Cut End",
         description: "Vergil's Judgment cut end",
         project: "Personal Project",
@@ -398,3 +380,4 @@ function loadTheme() {
 }
 
 init();
+
