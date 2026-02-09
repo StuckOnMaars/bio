@@ -111,6 +111,12 @@ body {
     animation: pageFadeIn 1.2s ease-out forwards;
 }
 
+.hero,
+.container,
+.site-footer {
+    animation: slideUp 1.2s ease-out forwards;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -312,16 +318,16 @@ a {
     position: relative;
 }
 
-.gallery-item-media img,
-.gallery-item-media video {
+.gallery-item-media>img,
+.gallery-item-media>video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
 }
 
-.gallery-item:hover .gallery-item-media img,
-.gallery-item:hover .gallery-item-media video {
+.gallery-item:hover .gallery-item-media>img,
+.gallery-item:hover .gallery-item-media>video {
     transform: scale(1.05);
 }
 
@@ -338,6 +344,31 @@ a {
     display: flex;
     align-items: center;
     gap: 0.3rem;
+}
+
+.commission-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+}
+
+.robux-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 2px;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 }
 
 .gallery-item-info {
@@ -412,6 +443,34 @@ a {
 .lightbox-info {
     text-align: center;
     color: white;
+    padding-bottom: 1rem;
+}
+
+.lightbox-extra-info {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.info-tag {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.price-tag {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.buyer-tag {
+    color: #60a5fa;
+    border-color: rgba(96, 165, 250, 0.3);
 }
 
 .lightbox-info h3 {
@@ -511,7 +570,17 @@ a {
 @keyframes pageFadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
     to {

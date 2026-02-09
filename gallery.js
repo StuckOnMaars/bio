@@ -52,8 +52,48 @@ const galleryItems = [
         category: "mischievous",
         type: "image",
         src: "https://tr.rbxcdn.com/180DAY-32e4ef4c65a6c4a9c41ab3bd9cca360c/768/432/Image/Webp/noFilter"
-    }
+    },
+    {
+        id: 7,
+        title: "Commission - Sukuna Moveset",
+        description: "Sukuna's moveset for a private commission",
+        project: "Commission",
+        category: "personal-commission",
+        type: "embed",
+        src: "https://streamable.com/e/vwf6tb",
+        price: "1700",
+        buyer: "Private Client",
+        currency: "robux"
+    },
+    {
+        id: 8,
+        title: "Commission - Gojo Moveset",
+        description: "Gojo's moveset for a private commission",
+        project: "Commission",
+        category: "personal-commission",
+        type: "embed",
+        src: "https://streamable.com/e/jcul5l",
+        price: "2000",
+        buyer: "Private Client",
+        currency: "robux"
+    },
+    {
+        id: 9,
+        title: "Personal Project - Vergil's Judgment Cut End",
+        description: "Vergil's Judgment cut end",
+        project: "Personal Project",
+        category: "personal-commission",
+        type: "embed",
+        src: "https://streamable.com/e/9mgxyt"
+    },
 ];
+
+function getCurrencyIcon(currency) {
+    if (currency === 'robux') {
+        return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Robux_2019_Logo_gold.svg/640px-Robux_2019_Logo_gold.svg.png" class="robux-icon" alt="Robux">`;
+    }
+    return '$';
+}
 
 const galleryGrid = document.getElementById('galleryGrid');
 const filterContainer = document.getElementById('filterContainer');
@@ -85,8 +125,12 @@ function renderFilters() {
         btn.classList.add('filter-btn');
         btn.dataset.filter = category;
 
-        const label = category === 'kj-stars' ? 'KJ Stars' : 'Mischievous BG';
-        btn.textContent = label;
+        const labelMap = {
+            'kj-stars': 'KJ Stars',
+            'mischievous': 'Mischievous BG',
+            'personal-commission': 'Personal Projects/Commissions'
+        };
+        btn.textContent = labelMap[category] || category;
 
         filterContainer.appendChild(btn);
     });
@@ -191,6 +235,14 @@ function createGalleryItem(item, index) {
         mediaDiv.appendChild(img);
     }
 
+    if (item.price || item.buyer) {
+        const badge = document.createElement('div');
+        badge.classList.add('commission-badge');
+        const icon = getCurrencyIcon(item.currency);
+        badge.innerHTML = `<span>${icon} Info</span>`;
+        mediaDiv.appendChild(badge);
+    }
+
     const infoDiv = document.createElement('div');
     infoDiv.classList.add('gallery-item-info');
 
@@ -227,8 +279,8 @@ function closeLightbox() {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 
-    const video = lightboxMedia.querySelector('video');
-    if (video) video.pause();
+    // Clear content to stop any playing media (video or iframe)
+    lightboxMedia.innerHTML = '';
 }
 
 function updateLightboxContent() {
@@ -238,6 +290,17 @@ function updateLightboxContent() {
     lightboxDesc.textContent = item.description;
 
     lightboxMedia.innerHTML = '';
+
+    if (item.price || item.buyer) {
+        const extraInfo = document.createElement('div');
+        extraInfo.classList.add('lightbox-extra-info');
+        const icon = getCurrencyIcon(item.currency);
+        extraInfo.innerHTML = `
+            ${item.price ? `<span class="info-tag price-tag">${icon} ${item.price}</span>` : ''}
+            ${item.buyer ? `<span class="info-tag buyer-tag">Buyer: ${item.buyer}</span>` : ''}
+        `;
+        lightboxDesc.appendChild(extraInfo);
+    }
 
     if (item.type === 'video') {
         const video = document.createElement('video');
